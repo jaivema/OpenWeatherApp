@@ -1,9 +1,13 @@
-import { LoadingButton } from "@mui/lab";
-import { Box, Container, TextField, Typography } from "@mui/material";
-import { useState } from "react";
+import { LoadingButton } from '@mui/lab';
+import { Box, Container, TextField, Typography } from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
+import { useState } from 'react';
+import axios from 'axios';
 
-const apiurl = import.meta.env.VITE_API_URL;
-const apikey = '&appid='+import.meta.env.VITE_API_KEY;
+const apiUrl  = import.meta.env.VITE_API_URL;
+const apiKey  = import.meta.env.VITE_API_KEY;
+const flagUrl = import.meta.env.VITE_FLAG_URL;
+const iconUrl = import.meta.env.VITE_ICON_URL;
 
 
 export default function App() {
@@ -12,7 +16,7 @@ export default function App() {
     error: false,
     message: "",
   });
-  const [loading, setLoading] = useState(false);
+  const [loading, isLoading] = useState(false);
 
   const [weather, setWeather] = useState({
     city: "",
@@ -26,15 +30,15 @@ export default function App() {
   const onSubmit = async (e) => {
     e.preventDefault();
     setError({ error: false, message: "" });
-    setLoading(true);
+    isLoading(true);
 
     try {
       if (!city.trim()) throw { message: "El campo ciudad es obligatorio" };
+      
+      const response = await axios.get(apiUrl + city + '&appid=' + apiKey);
+      const data = await response.data;
 
-      const res = await fetch(apiurl + city + apikey);
-      const data = await res.json();
-
-      console.log(data);
+      //console.log(data);
 
       if (data.error) {
         throw { message: data.error.message };
@@ -55,7 +59,7 @@ export default function App() {
       console.log(error);
       setError({ error: true, message: error.message });
     } finally {
-      setLoading(false);
+      isLoading(false);
     }
   };
 
@@ -64,9 +68,9 @@ export default function App() {
       maxWidth="xs"
       sx={{ mt: 2 }}
     >
-      <Typography
-        variant="h3"
-        component="h1"
+      <Typography 
+        variant="h2" 
+        color="primary" 
         align="center"
         gutterBottom
       >
@@ -95,6 +99,7 @@ export default function App() {
           variant="contained"
           loading={loading}
           loadingIndicator="Buscando..."
+          endIcon={<SendIcon/>}
         >
           Buscar
         </LoadingButton>
@@ -110,34 +115,37 @@ export default function App() {
           }}
         >
           <Typography
-            variant="h4"
+            variant="h3"
             component="h2"
           >
-            {weather.city}, {weather.country}
+            {weather.city}
           </Typography>
           <Box
             component="img"
             alt="..."
-            src={`http://openweathermap.org/images/flags/${weather.country.toLowerCase()}.png`}
+            src={`${flagUrl}${weather.country.toLowerCase()}.png`}
             sx={{ margin: "0 auto" }}
           />
           <Box
             component="img"
             alt={weather.conditionText}
-            src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`}
+            src={`${iconUrl}${weather.icon}@2x.png`}
             sx={{ margin: "0 auto" }}
           />
+          <Typography
+            variant="h6"
+            component="h4"
+          >
+            {/*Primera letra capital*/}
+            {weather.conditionText.charAt(0).toUpperCase()}
+            {/*Resto del texto*/}
+            {weather.conditionText.slice(1)}
+          </Typography>
           <Typography
             variant="h5"
             component="h3"
           >
             {weather.temperature} °C
-          </Typography>
-          <Typography
-            variant="h6"
-            component="h4"
-          >
-            {weather.conditionText}
           </Typography>
         </Box>
       )}

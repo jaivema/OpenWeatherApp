@@ -6,7 +6,7 @@
 
 [Material UI](https://mui.com/)
 
-**Instalación de react + vite**
+## Instalación de react + vite
 
 *React+Vite / JS+SWC*
 
@@ -15,19 +15,21 @@ npm create vite@latest .
 npm i
 ```
 
-**Instalar las dependencias de MUI**
+## Instalar las dependencias de MUI
 
-- Instalación de Material por defecto:
+### MaterialUI por defecto
 
 ```
 npm install @mui/material
 ```
 
-- Se recomienda encarecidamente utilizar @emotion para proyectos SSR. Ademásm es el motor de estilos predeterminado de Material UI
+- Se recomienda encarecidamente utilizar **@emotion** para proyectos SSR. Ademásm es el motor de estilos predeterminado de Material UI
 
 ```
 npm install @emotion/react @emotion/styled
 ```
+
+### Fuente Roboto
 
 - Material UI utiliza la fuente [Roboto](https://fonts.google.com/specimen/Roboto) de forma predeterminada.
 
@@ -57,7 +59,7 @@ import '@fontsource/roboto/700.css';
 > />
 > ```
 
-- La instalación de iconos de material SVG prediseñados:
+### Iconos SVG prediseñados
 
 ```
 npm install @mui/icons-material
@@ -72,12 +74,68 @@ npm install @mui/icons-material
 > />
 > ```
 
+### Notificaciones y alertas notistack
+
 - *Notistack* es una biblioteca de React que hace que sea muy fácil mostrar notificaciones en sus aplicaciones web. *Snackbar, Toast y Alert*.
 
 ```
 npm install @mui/lab notistack
 ```
 
-    Borrar los archivos que no se usarán:
+---
 
-- 
+## Version v0.0.2
+
+*A modo de práctica y entendendimiento.* Fecth o Axios. Utilizar variables de entorno para esconder las url en el lado del cliente.
+
+1. ocultar las url con variables de entorno.
+
+2. Implementar con axios.
+
+3. Una tarea de estética. El texto de la condición meteorológica llega todo en minúsculas.
+- He pasado de utilizar las url's de la api harcodeadas a **variables de entorno** para ocultarlas en el lado cliente.
+
+```javascript
+const apiUrl  = import.meta.env.VITE_API_URL;
+const apiKey  = import.meta.env.VITE_API_KEY;
+const flagUrl = import.meta.env.VITE_FLAG_URL;
+const iconUrl = import.meta.env.VITE_ICON_URL;
+```
+
+### Dependencia Axios
+
+- **Axios** ofrece una compatibilidad con navegadores mas antíguos, por lo que creo que merece la pena que esté actualizado. Un inconveniente a diferencia de promesas nativas con fetch, es instalar una librería de terceros.
+
+> He reemplazado `fetch` por `axios.get`, y en lugar de obtener `data` directamente de la respuesta, lo extraigo de `response.data`.
+
+```
+npm install axios
+```
+
+    Importación de axios al archivo
+
+```javascript
+import axios from 'axios';
+```
+
+    El tipo de llamada ahora cambia a promesa de **axios**. El resto del código no sufre  cambios.
+
+```javascript
+const response = await axios.get(apiUrl + city + '&appid=' + apiKey);
+const data = await response.data;
+```
+
+### Texto de condición meteorológica.
+
+    Establecer el texto de condición meteorológica a letra *Capital*. 
+
+> Ejemplo: de 'scattered clouds' a 'Scattered clouds'
+
+```javascript
+{/*Primera letra capital*/}
+{weather.conditionText.charAt(0).toUpperCase()}
+{/*Resto del texto*/}
+{weather.conditionText.slice(1)}
+```
+
+---
