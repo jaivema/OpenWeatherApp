@@ -139,3 +139,23 @@ const data = await response.data;
 ```
 
 ---
+
+## Version v0.0.3
+
+### Desacoplar por componentes
+
+    Mantengo la lógica de negocio en App.jsx y desacoplado el render por componentes.
+
+1. **WeatherForm**.jsx
+   
+   - Contiene el formulario de búsqueda de la ciudad y el botón de búsqueda.
+
+2. **WeatherInfo**.jsx
+   
+   - Muestra la información del clima cuando esté disponible la petición.
+
+3. **PoweredBy**.jsx
+   
+   - Muestra la atribución del proveedor del servicio meteorológico.
+
+---
