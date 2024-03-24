@@ -7,8 +7,6 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
-import "./index.css";
-
 import { CssBaseline } from "@mui/material";    //reinicia los estilos
 import { SnackbarProvider } from "notistack";   //componentes de altertas
 
@@ -18,5 +16,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <SnackbarProvider>
       <App />
     </SnackbarProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
