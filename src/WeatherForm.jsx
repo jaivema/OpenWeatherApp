@@ -1,9 +1,59 @@
+import { useState } from 'react';
+
 import Box from '@mui/material/Box';
 import LoadingButton from '@mui/lab/LoadingButton';
 import TextField from '@mui/material/TextField';
 import SendIcon from '@mui/icons-material/Send';
 
-function WeatherForm( {onSubmit, city, setCity, error, loading} ) {
+import axios from 'axios';
+
+const apiUrl  = import.meta.env.VITE_API_URL;
+const appiKey  = import.meta.env.VITE_API_KEY;
+const units = '&units=metric';
+const appid = '&appid='+`${appiKey}`;
+
+function WeatherForm( {setWeather}) {
+    const [city, setCity] = useState("");
+    const [error, setError] = useState({
+        error: false,
+        message: "",
+    });
+    const [loading, isLoading] = useState(false);
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        setError({ error: false, message: "" });
+        isLoading(true);
+    
+        try {
+            if (!city.trim()) throw { message: "El campo Ciudad es obligatorio" };
+        
+            const response = await axios.get(
+                `${apiUrl}${city}${units}${appid}`
+                );
+                 
+            const data = await response.data;
+        
+            //console.log(data);
+        
+            if (data.error) {
+                throw { message: data.error.message };
+            }
+          
+            setWeather({
+                city: data.name,
+                country: data.sys.country,
+                temperature: data.main.temp,
+                condition: data.weather.main,
+                conditionText: data.weather[0].description,
+                icon: data.weather[0].icon,
+            });
+        } catch (error) {
+            console.log(error);
+            setError({ error: true, message: error.message });
+        } finally {
+            isLoading(false);
+        }
+      };
     return (
         <Box sx={{ display: "grid", gap: 2 }}
             component="form"
