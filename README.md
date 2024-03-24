@@ -159,11 +159,3 @@ const data = await response.data;
    - Muestra la atribución del proveedor del servicio meteorológico.
 
 ---
-
-## Version v0.0.4
-
-### Desacoplar axios
-
-    Desacoplar la lógica onSubmit del componente principal al WeatherForm.jsx.
-
-    Obtener la temperatura en Celsius. Antes la mostraba en Kelvin, ahora será en Celsius por defecto.
