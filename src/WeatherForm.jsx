@@ -62,7 +62,7 @@ function WeatherForm( {setWeather}) {
         >
             <TextField
                 id="city"
-                label="Pais"
+                label="Ciudad"
                 variant="outlined"
                 size="small"
                 required
