@@ -62,7 +62,7 @@ function WeatherForm( {setWeather}) {
         >
             <TextField
                 id="city"
-                label="Ciudad"
+                label="Pais y ciudad"
                 variant="outlined"
                 size="small"
                 required
@@ -77,8 +77,19 @@ function WeatherForm( {setWeather}) {
                 loading={loading}
                 loadingIndicator="Buscando..."
                 endIcon={<SendIcon/>}
+                
             >
-                Buscar
+                Ciudad
+            </LoadingButton>
+            <LoadingButton 
+                type="submit" 
+                variant="contained"
+                loading={loading}
+                loadingIndicator="Buscando..."
+                endIcon={<SendIcon/>}
+                
+            >
+                Pais
             </LoadingButton>
         </Box>
     );
