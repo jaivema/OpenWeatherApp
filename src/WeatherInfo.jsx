@@ -27,14 +27,24 @@ function WeatherInfo({weather}){
             />
 
             <Typography variant="h6" component="h4">
-                {/*Primera letra capital*/}
                 {weather.conditionText.charAt(0).toUpperCase()}
-                {/*Resto del texto*/}
                 {weather.conditionText.slice(1)}
             </Typography>
 
             <Typography variant="h5" component="h3">
-                {weather.temperature} °C
+                Temperatura: {weather.temperature} °C
+            </Typography>
+            <Typography variant="h5" component="h3">
+                Max: {weather.temp_max} °C
+            </Typography>
+            <Typography variant="h5" component="h3">
+                Min: {weather.temp_min} °C
+            </Typography>
+            <Typography variant="h5" component="h3">
+                Humedad: {weather.humidity} %
+            </Typography>
+            <Typography variant="h5" component="h3">
+                Presión atmos.: {weather.pressure}
             </Typography>
         </Box>
     )

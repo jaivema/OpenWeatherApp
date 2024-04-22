@@ -1,27 +1,20 @@
-import { useState } from 'react';
+import { useState } from "react"
 
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container'
+import Typography from '@mui/material/Typography'
 
-import WeatherForm from './WeatherForm';
-import WeatherInfo from './WeatherInfo';
-import PoweredBy from './PoweredBy';
+import WeatherForm from './WeatherForm'
+import WeatherInfo from './WeatherInfo'
+import PoweredBy from './PoweredBy'
 
 export default function App() {
   
-  const [weather, setWeather] = useState({
-    city: "",
-    country: "",
-    temperature: 0,
-    condition: "",
-    conditionText: "",
-    icon: "",
-  });
+  const [weather, setWeather] = useState({ city: "" });
 
   return (
     <Container maxWidth="xs" sx={{ mt: 2 }}>
       <Typography variant="h2" color="primary" align="center" gutterBottom>
-        Weather App
+        Open Weather App
       </Typography>
       
       <WeatherForm 

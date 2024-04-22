@@ -1,9 +1,8 @@
-import { useState } from 'react';
-
-import Box from '@mui/material/Box';
-import LoadingButton from '@mui/lab/LoadingButton';
-import TextField from '@mui/material/TextField';
-import SendIcon from '@mui/icons-material/Send';
+import { useState } from 'react'
+import Box from '@mui/material/Box'
+import LoadingButton from '@mui/lab/LoadingButton'
+import TextField from '@mui/material/TextField'
+import SendIcon from '@mui/icons-material/Send'
 
 import axios from 'axios';
 
@@ -13,6 +12,7 @@ const units = '&units=metric';
 const appid = '&appid='+`${appiKey}`;
 
 function WeatherForm( {setWeather}) {
+    
     const [city, setCity] = useState("");
     const [error, setError] = useState({
         error: false,
@@ -32,13 +32,10 @@ function WeatherForm( {setWeather}) {
                 );
                  
             const data = await response.data;
+
+ {/*CONSOLE.LOG(DATA)*/}
+            console.log(data);
         
-            //console.log(data);
-        
-            if (data.error) {
-                throw { message: data.error.message };
-            }
-          
             setWeather({
                 city: data.name,
                 country: data.sys.country,
@@ -46,10 +43,15 @@ function WeatherForm( {setWeather}) {
                 condition: data.weather.main,
                 conditionText: data.weather[0].description,
                 icon: data.weather[0].icon,
+                humidity: data.main.humidity,
+                pressure: data.main.pressure,
+                temp_max: data.main.temp_max,
+                temp_min: data.main.temp_min,
+
             });
         } catch (error) {
             console.log(error);
-            setError({ error: true, message: error.message });
+            setError({ error: true, message: error.response.data.message });
         } finally {
             isLoading(false);
         }
@@ -77,7 +79,6 @@ function WeatherForm( {setWeather}) {
                 loading={loading}
                 loadingIndicator="Buscando..."
                 endIcon={<SendIcon/>}
-                
             >
                 Buscar
             </LoadingButton>

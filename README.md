@@ -167,3 +167,21 @@ const data = await response.data;
     Desacoplar la lógica onSubmit del componente principal al WeatherForm.jsx.
 
     Obtener la temperatura en Celsius. Antes la mostraba en Kelvin, ahora será en Celsius por defecto.
+
+## Version v0.0.5
+
+* Ahora devuelve el error de '**city not found**' cuando no encuentra la ciudad
+
+* El titulo ahora es **Open Weather App** en lugar de **Weather App**
+
+* Nuevos parámetros meteorológicos:
+  
+  * Temperatura: 9.86 °C
+  
+  * Max: 11.65 °C
+  
+  * Min: 8.23 °C
+  
+  * Humedad: 79 %
+  
+  * Presión atmos.: 1018 mB
