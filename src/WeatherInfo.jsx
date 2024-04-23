@@ -31,15 +31,20 @@ function WeatherInfo({weather}){
                 {weather.conditionText.slice(1)}
             </Typography>
 
-            <Typography variant="h5" component="h3">
-                Temperatura: {weather.temperature} °C
+            <Typography variant="h3" component="h2">
+                {weather.temperature} °C
             </Typography>
-            <Typography variant="h5" component="h3">
-                Max: {weather.temp_max} °C
+            <Typography variant="h5" component="h4">
+                <ul>
+                    <li style={{display: 'inline-block', margin: '10px'}}>
+                        Max: {weather.temp_max} °C
+                    </li>
+                    <li style={{display: 'inline-block', margin: '10px'}}>
+                        Min: {weather.temp_min} °C
+                    </li>
+                </ul>
             </Typography>
-            <Typography variant="h5" component="h3">
-                Min: {weather.temp_min} °C
-            </Typography>
+            
             <Typography variant="h5" component="h3">
                 Humedad: {weather.humidity} %
             </Typography>

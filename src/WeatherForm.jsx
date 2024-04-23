@@ -1,8 +1,10 @@
-import { useState } from 'react'
-import Box from '@mui/material/Box'
-import LoadingButton from '@mui/lab/LoadingButton'
-import TextField from '@mui/material/TextField'
-import SendIcon from '@mui/icons-material/Send'
+import { useState } from 'react';
+
+import Box from '@mui/material/Box';
+import LoadingButton from '@mui/lab/LoadingButton';
+import TextField from '@mui/material/TextField';
+import SendIcon from '@mui/icons-material/Send';
+import WeatherInfo from './WeatherInfo';
 
 import axios from 'axios';
 
@@ -11,9 +13,19 @@ const appiKey  = import.meta.env.VITE_API_KEY;
 const units = '&units=metric';
 const appid = '&appid='+`${appiKey}`;
 
-function WeatherForm( {setWeather}) {
-    
-    const [city, setCity] = useState("");
+function WeatherForm() {
+    const [weather, setWeather] = useState({
+        city: "",
+        country: "",
+        temperature: 0,
+        temp_max: 0,
+        temp_min: 0,
+        condition: "",
+        conditionText: "",
+        humidity: 0,
+        pressure: 0,
+      });
+    const [citySearch, setCitySearch] = useState("");
     const [error, setError] = useState({
         error: false,
         message: "",
@@ -25,10 +37,10 @@ function WeatherForm( {setWeather}) {
         isLoading(true);
     
         try {
-            if (!city.trim()) throw { message: "El campo Ciudad es obligatorio" };
+            if (!citySearch.trim()) throw { message: "El campo Ciudad es obligatorio" };
         
             const response = await axios.get(
-                `${apiUrl}${city}${units}${appid}`
+                `${apiUrl}${citySearch}${units}${appid}`
                 );
                  
             const data = await response.data;
@@ -68,8 +80,8 @@ function WeatherForm( {setWeather}) {
                 variant="outlined"
                 size="small"
                 required
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
+                value={citySearch}
+                onChange={(e) => setCitySearch(e.target.value)}
                 error={error.error}
                 helperText={error.message}
             />
@@ -82,7 +94,10 @@ function WeatherForm( {setWeather}) {
             >
                 Buscar
             </LoadingButton>
-            
+
+            {weather.city && (
+                <WeatherInfo weather={weather}/>
+            )}
         </Box>
     );
 }export default WeatherForm;

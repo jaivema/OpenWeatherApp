@@ -102,6 +102,18 @@ const flagUrl = import.meta.env.VITE_FLAG_URL;
 const iconUrl = import.meta.env.VITE_ICON_URL;
 ```
 
+### Evitar la exposición de datos sensibles con entorno local
+
+    El fichero creado es `.env.local` en la raíz del proyecto y contiene la siguiente información de la cuenta OpenWeather y con esta práctica el código se hace mas legíble.:
+
+```
+VITE_API_URL = http://api.openweathermap.org/data/2.5/weather?q=
+VITE_ICON_URL = https://openweathermap.org/img/wn/
+VITE_FLAG_URL = http://openweathermap.org/images/flags/
+```
+
+> El token que se proporciona con la cuenta en openweather para consumir su API queda contenida bajo la constate `VITE_API_KEY`
+
 ### Dependencia Axios
 
 - **Axios** ofrece una compatibilidad con navegadores mas antíguos, por lo que creo que merece la pena que esté actualizado. Un inconveniente a diferencia de promesas nativas con fetch, es instalar una librería de terceros.
