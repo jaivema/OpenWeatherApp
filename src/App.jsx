@@ -1,7 +1,7 @@
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import WeatherForm from './WeatherForm';
-import PoweredBy from './PoweredBy';
+import Container from '@mui/material/Container'
+import Typography from '@mui/material/Typography'
+import WeatherForm from './WeatherForm'
+import PoweredBy from './PoweredBy'
 
 export default function App() {
   return (

@@ -1,12 +1,11 @@
-import { useState } from 'react';
-
-import Box from '@mui/material/Box';
-import LoadingButton from '@mui/lab/LoadingButton';
-import TextField from '@mui/material/TextField';
-import SendIcon from '@mui/icons-material/Send';
-import WeatherInfo from './WeatherInfo';
-
-import axios from 'axios';
+import { useState } from 'react'
+import Box from '@mui/material/Box'
+import LoadingButton from '@mui/lab/LoadingButton'
+import TextField from '@mui/material/TextField'
+import SendIcon from '@mui/icons-material/Send'
+import WeatherInfo from './WeatherInfo'
+import initWeather from './initWeather.json'
+import axios from 'axios'
 
 const apiUrl  = import.meta.env.VITE_API_URL;
 const appiKey  = import.meta.env.VITE_API_KEY;
@@ -14,17 +13,7 @@ const units = '&units=metric';
 const appid = '&appid='+`${appiKey}`;
 
 function WeatherForm() {
-    const [weather, setWeather] = useState({
-        city: "",
-        country: "",
-        temperature: 0,
-        temp_max: 0,
-        temp_min: 0,
-        condition: "",
-        conditionText: "",
-        humidity: 0,
-        pressure: 0,
-      });
+    const [weather, setWeather] = useState({initWeather});
     const [citySearch, setCitySearch] = useState("");
     const [error, setError] = useState({
         error: false,
@@ -79,8 +68,7 @@ function WeatherForm() {
                 label="Ciudad"
                 variant="outlined"
                 size="small"
-                required
-                value={citySearch}
+                required value={citySearch}
                 onChange={(e) => setCitySearch(e.target.value)}
                 error={error.error}
                 helperText={error.message}
@@ -95,9 +83,7 @@ function WeatherForm() {
                 Buscar
             </LoadingButton>
 
-            {weather.city && (
-                <WeatherInfo weather={weather}/>
-            )}
+            {weather.city && (<WeatherInfo weather={weather}/>)}
         </Box>
     );
 }export default WeatherForm;
