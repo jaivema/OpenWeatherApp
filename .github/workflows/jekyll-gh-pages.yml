@@ -37,10 +37,10 @@ jobs:
           cache: 'npm'
       - name: Print environment variables
         run: |
-          echo "VITE_API_KEY=$VITE_API_KEY"
-          echo "VITE_API_URL=$VITE_API_URL"
-          echo "VITE_ICON_URL=$VITE_ICON_URL"
-          echo "VITE_FLAG_URL=$VITE_FLAG_URL"
+          echo ${{ secrets.VITE_API_KEY }}
+          echo ${{ secrets.VITE_API_URL }}
+          echo ${{ secrets.VITE_ICON_URL }}
+          echo ${{ secrets.VITE_FLAG_URL }}
       - name: Install dependencies
         run: npm ci
         env:
