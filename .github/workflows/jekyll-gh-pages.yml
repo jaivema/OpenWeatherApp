@@ -37,8 +37,18 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
+        env:
+          VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+          VITE_ICON_URL: ${{ secrets.VITE_ICON_URL }}
+          VITE_FLAG_URL: ${{ secrets.VITE_FLAG_URL }}
       - name: Build
         run: npm run build
+        env:
+          VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+          VITE_ICON_URL: ${{ secrets.VITE_ICON_URL }}
+          VITE_FLAG_URL: ${{ secrets.VITE_FLAG_URL }}
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
