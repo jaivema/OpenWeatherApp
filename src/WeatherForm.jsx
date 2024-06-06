@@ -7,32 +7,32 @@ import WeatherInfo from './WeatherInfo'
 import initWeather from './initWeather.json'
 import axios from 'axios'
 
-const apiUrl  = import.meta.env.VITE_API_URL;
-const appiKey  = import.meta.env.VITE_API_KEY;
-const units = '&units=metric';
-const appid = '&appid='+`${appiKey}`;
+const apiUrl  = 'http://api.openweathermap.org/data/2.5/weather?q='
+const units = '&units=metric'
+const appid = '&appid=f6a863c3e80a20999b295bbd29db8da5'
+const language = '&lang=es'
 
 function WeatherForm() {
-    const [weather, setWeather] = useState({initWeather});
-    const [citySearch, setCitySearch] = useState("");
+    const [weather, setWeather] = useState({initWeather})
+    const [citySearch, setCitySearch] = useState("")
     const [error, setError] = useState({
         error: false,
         message: "",
     });
-    const [loading, isLoading] = useState(false);
+    const [loading, isLoading] = useState(false)
     const onSubmit = async (e) => {
         e.preventDefault();
-        setError({ error: false, message: "" });
-        isLoading(true);
+        setError({ error: false, message: "" })
+        isLoading(true)
     
         try {
-            if (!citySearch.trim()) throw { message: "El campo Ciudad es obligatorio" };
+            if (!citySearch.trim()) throw { message: "El campo Ciudad es obligatorio" }
         
             const response = await axios.get(
-                `${apiUrl}${citySearch}${units}${appid}`
+                `${apiUrl}${citySearch}${units}${appid}${language}`
                 );
                  
-            const data = await response.data;
+            const data = await response.data
 
  {/*CONSOLE.LOG(DATA)*/}
             console.log(data);
@@ -48,13 +48,14 @@ function WeatherForm() {
                 pressure: data.main.pressure,
                 temp_max: data.main.temp_max,
                 temp_min: data.main.temp_min,
-
+                lat: data.coord.lat,
+                lon: data.coord.lon
             });
         } catch (error) {
-            console.log(error);
-            setError({ error: true, message: error.response.data.message });
+            console.log(error)
+            setError({ error: true, message: error.response.data.message })
         } finally {
-            isLoading(false);
+            isLoading(false)
         }
       };
     return (
@@ -86,4 +87,4 @@ function WeatherForm() {
             {weather.city && (<WeatherInfo weather={weather}/>)}
         </Box>
     );
-}export default WeatherForm;
+}export default WeatherForm

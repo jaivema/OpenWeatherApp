@@ -1,8 +1,8 @@
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
 
-const flagUrl = import.meta.env.VITE_FLAG_URL;
-const iconUrl = import.meta.env.VITE_ICON_URL;
+const flagUrl = 'http://openweathermap.org/images/flags/'
+const iconUrl = 'https://openweathermap.org/img/wn/'
 
 function WeatherInfo({weather}){
     return(
@@ -49,8 +49,8 @@ function WeatherInfo({weather}){
                 Humedad: {weather.humidity} %
             </Typography>
             <Typography variant="h5" component="h3">
-                Presión atmos.: {weather.pressure}
+                {weather.pressure} hPa
             </Typography>
         </Box>
     )
-}export default WeatherInfo;
+}export default WeatherInfo

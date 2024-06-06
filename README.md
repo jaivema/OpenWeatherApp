@@ -1,6 +1,6 @@
 # WeatherApp con OpenWather
 
-    Esta es una práctica para concer los conceptos clave de *Material UI*, incluyendo **CSSBaseline, Container, Typography, Grid, ThemeProvider** y poner en práctica el uso de componentes como **Navbar, Drawer, Button, Card** y explorar componentes avanzados como **AppBar, Alert y Snackbar**.
+    Este es un laboratorio para concer los conceptos clave de *Material UI*, incluyendo **CSSBaseline, Container, Typography, Grid, ThemeProvider** y exponer el uso de componentes como **Navbar, Drawer, Button, Card** y explorar avanzados como **AppBar, Alert y Snackbar**.
 
     **Material UI** es una biblioteca de componentes de interfaz de usuario para **React** que sigue los diseños de **Material Design de Google**. Material Design utiliza elementos visuales sólidos y sombras para proporcionar una sensación de profundidad en la interfaz de usuario, y se basa en una escala de grises y en una paleta de colores limitada para proporcionar una apariencia uniforme y coherente.
 
@@ -84,35 +84,16 @@ npm install @mui/lab notistack
 
 ---
 
-## Version v0.0.2
+## Version v0.02
 
 *A modo de práctica y entendendimiento.* Fecth o Axios. Utilizar variables de entorno para esconder las url en el lado del cliente.
 
-1. ocultar las url con variables de entorno.
+~~1. ocultar las url con variables de entorno.~~
 
 2. Implementar con axios.
 
 3. Una tarea de estética. El texto de la condición meteorológica llega todo en minúsculas.
 - He pasado de utilizar las url's de la api harcodeadas a **variables de entorno** para ocultarlas en el lado cliente.
-
-```javascript
-const apiUrl  = import.meta.env.VITE_API_URL;
-const apiKey  = import.meta.env.VITE_API_KEY;
-const flagUrl = import.meta.env.VITE_FLAG_URL;
-const iconUrl = import.meta.env.VITE_ICON_URL;
-```
-
-### Evitar la exposición de datos sensibles con entorno local
-
-    El fichero creado es `.env.local` en la raíz del proyecto y contiene la siguiente información de la cuenta OpenWeather y con esta práctica el código se hace mas legíble.:
-
-```
-VITE_API_URL = http://api.openweathermap.org/data/2.5/weather?q=
-VITE_ICON_URL = https://openweathermap.org/img/wn/
-VITE_FLAG_URL = http://openweathermap.org/images/flags/
-```
-
-> El token que se proporciona con la cuenta en openweather para consumir su API queda contenida bajo la constate `VITE_API_KEY`
 
 ### Dependencia Axios
 
@@ -152,7 +133,7 @@ const data = await response.data;
 
 ---
 
-## Version v0.0.3
+## Version v0.03
 
 ### Desacoplar por componentes
 
@@ -160,19 +141,19 @@ const data = await response.data;
 
 1. **WeatherForm**.jsx
    
-   - Contiene el formulario de búsqueda de la ciudad y el botón de búsqueda.
+    - Contiene el formulario de búsqueda de la ciudad y el botón de búsqueda.
 
 2. **WeatherInfo**.jsx
    
-   - Muestra la información del clima cuando esté disponible la petición.
+    - Muestra la información del clima cuando esté disponible la petición.
 
 3. **PoweredBy**.jsx
    
-   - Muestra la atribución del proveedor del servicio meteorológico.
+    - Muestra la atribución del proveedor del servicio meteorológico.
 
 ---
 
-## Version v0.0.4
+## Version v0.04
 
 ### Desacoplar axios
 
@@ -180,20 +161,29 @@ const data = await response.data;
 
     Obtener la temperatura en Celsius. Antes la mostraba en Kelvin, ahora será en Celsius por defecto.
 
-## Version v0.0.5
+---
 
-* Ahora devuelve el error de '**city not found**' cuando no encuentra la ciudad
+## Version v0.05
 
-* El titulo ahora es **Open Weather App** en lugar de **Weather App**
+* Ahora devuelve el error '**city not found**' cuando no encuentra la ciudad.
+
+* El titulo ahora es **Open weather app** en lugar de **Weather App**.
 
 * Nuevos parámetros meteorológicos:
   
-  * Temperatura: 9.86 °C
+   * Temperatura: 9.86 °C
   
-  * Max: 11.65 °C
+   * Max: 11.65 °C
   
-  * Min: 8.23 °C
+   * Min: 8.23 °C
   
-  * Humedad: 79 %
+   * Humedad: 79 %
   
-  * Presión atmos.: 1018 mB
+   * Presión atmos.: 1018 hPa
+
+---
+
+## Versión v0.06
+
+* importado el icon de open weather
+* lenguaje en español por defecto *Cielo claro*
