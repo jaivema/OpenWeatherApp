@@ -1,7 +1,28 @@
 import React, { useEffect, useState } from 'react'
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
+import L from 'leaflet'
+import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png'
+import markerIcon from 'leaflet/dist/images/marker-icon.png'
+import markerShadow from 'leaflet/dist/images/marker-shadow.png'
 import 'leaflet/dist/leaflet.css'
 import './Map.css'
+
+// Solucionar problemas con los iconos de marcador de Leaflet
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: markerIcon2x,
+  iconUrl: markerIcon,
+  shadowUrl: markerShadow,
+})
+//renderizar la nueva marca
+function RecenterMap({ lat, lon }) {
+  const map = useMap()
+  useEffect(() => {
+    if (lat != null && lon != null) {
+      map.setView([lat, lon])
+    }
+  }, [lat, lon, map])
+  return null
+}
 
 function Map({ weather }) {
   const [lat, setLat] = useState(null)
@@ -34,7 +55,10 @@ function Map({ weather }) {
         {`Información meteorológica para ${city}.`}
         </Popup>
       </Marker>
+      <RecenterMap lat={lat} lon={lon} />
     </MapContainer>
   )
 }
+
 export default Map
+
