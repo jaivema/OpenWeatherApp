@@ -33,10 +33,7 @@ function WeatherForm() {
                 );
                  
             const data = await response.data
-
- {/*CONSOLE.LOG(DATA)*/}
-            console.log(data);
-        
+            
             setWeather({
                 city: data.name,
                 country: data.sys.country,
@@ -83,8 +80,10 @@ function WeatherForm() {
             >
                 Buscar
             </LoadingButton>
-
-            {weather.city && (<WeatherInfo weather={weather}/>)}
+            {
+                weather.city && (<WeatherInfo weather={weather}/>)
+            }
         </Box>
-    );
-}export default WeatherForm
+    )
+}
+export default WeatherForm

@@ -7,7 +7,7 @@ export default function App() {
   return (
     <Container maxWidth="xs" sx={{ mt: 2 }}>
 
-      <Typography variant="h2" color="primary" align="center" gutterBottom>
+      <Typography variant="h4" color="primary" align="center" gutterBottom>
         Open Weather App
       </Typography>
 
