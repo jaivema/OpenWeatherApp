@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import './Map.css'
-
-/*
+// Importar los iconos de marcador para compatibilidad de Leaflet
 import L from 'leaflet'
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png'
 import markerIcon from 'leaflet/dist/images/marker-icon.png'
@@ -15,9 +14,8 @@ L.Icon.Default.mergeOptions({
   iconUrl: markerIcon,
   shadowUrl: markerShadow,
 })
-*/
 
-//renderizar la nueva marca
+// Renderizar la nueva marca
 function RecenterMap({ lat, lon }) {
   const map = useMap()
   useEffect(() => {

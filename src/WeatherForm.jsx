@@ -18,7 +18,7 @@ function WeatherForm() {
     const [error, setError] = useState({
         error: false,
         message: "",
-    });
+    })
     const [loading, isLoading] = useState(false)
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -30,7 +30,7 @@ function WeatherForm() {
         
             const response = await axios.get(
                 `${apiUrl}${citySearch}${units}${appid}${language}`
-                );
+                )
                  
             const data = await response.data
             
@@ -47,14 +47,14 @@ function WeatherForm() {
                 temp_min: data.main.temp_min,
                 lat: data.coord.lat,
                 lon: data.coord.lon
-            });
+            })
         } catch (error) {
             console.log(error)
             setError({ error: true, message: error.response.data.message })
         } finally {
             isLoading(false)
         }
-      };
+    }
     return (
         <Box sx={{ display: "grid", gap: 2 }}
             component="form"
