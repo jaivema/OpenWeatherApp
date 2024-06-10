@@ -7,7 +7,7 @@ import WeatherInfo from './WeatherInfo'
 import initWeather from './initWeather.json'
 import axios from 'axios'
 
-const apiUrl  = 'http://api.openweathermap.org/data/2.5/weather?q='
+const apiUrl  = 'https://api.openweathermap.org/data/2.5/weather?q='
 const units = '&units=metric'
 const appid = '&appid=f6a863c3e80a20999b295bbd29db8da5'
 const language = '&lang=es'

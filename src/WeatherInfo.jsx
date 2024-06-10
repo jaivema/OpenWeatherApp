@@ -2,7 +2,7 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Map from './Map'
 
-const flagUrl = 'http://openweathermap.org/images/flags/'
+const flagUrl = 'https://openweathermap.org/images/flags/'
 const iconUrl = 'https://openweathermap.org/img/wn/'
 
 function WeatherInfo({weather}){
