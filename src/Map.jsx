@@ -8,14 +8,13 @@ import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png'
 import markerIcon from 'leaflet/dist/images/marker-icon.png'
 import markerShadow from 'leaflet/dist/images/marker-shadow.png'
 
-// Solucionar problemas con los iconos de marcador de Leaflet
+delete L.Icon.Default.prototype._getIconUrl
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: markerIcon2x,
   iconUrl: markerIcon,
   shadowUrl: markerShadow,
 })
 
-// Renderizar la nueva marca
 function RecenterMap({ lat, lon }) {
   const map = useMap()
   useEffect(() => {
@@ -46,11 +45,14 @@ function Map({ weather }) {
   return (
     <MapContainer center={[lat, lon]} zoom={5} className="map-container">
       <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
       <TileLayer
-        url={`https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=f6a863c3e80a20999b295bbd29db8da5`}
+        url="https://tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png?appid=f6a863c3e80a20999b295bbd29db8da5"
+      />
+      <TileLayer
+        url="https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=f6a863c3e80a20999b295bbd29db8da5"
       />
       <Marker position={[lat, lon]}>
         <Popup>
