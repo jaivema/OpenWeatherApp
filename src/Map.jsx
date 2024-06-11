@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
-import './Map.css'
-// Importar los iconos de marcador para compatibilidad de Leaflet
 import L from 'leaflet'
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png'
 import markerIcon from 'leaflet/dist/images/marker-icon.png'
 import markerShadow from 'leaflet/dist/images/marker-shadow.png'
+import React, { useEffect, useState } from 'react'
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
 
 delete L.Icon.Default.prototype._getIconUrl
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: markerIcon2x,
   iconUrl: markerIcon,
-  shadowUrl: markerShadow,
+  shadowUrl: markerShadow
 })
 
 function RecenterMap({ lat, lon }) {
@@ -43,7 +41,7 @@ function Map({ weather }) {
   }
 
   return (
-    <MapContainer center={[lat, lon]} zoom={5} className="map-container">
+    <MapContainer center={[lat, lon]} zoom={5} style={{width:500, height:300}}>
       <TileLayer
         url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -56,13 +54,12 @@ function Map({ weather }) {
       />
       <Marker position={[lat, lon]}>
         <Popup>
-        {`Información meteorológica para ${city}.`}
+          {`Información meteorológica para ${city}.`}
         </Popup>
       </Marker>
       <RecenterMap lat={lat} lon={lon} />
     </MapContainer>
   )
 }
-
 export default Map
 
