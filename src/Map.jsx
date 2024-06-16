@@ -47,10 +47,10 @@ function Map({ weather }) {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
       <TileLayer
-        url="https://tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png?appid=f6a863c3e80a20999b295bbd29db8da5"
+        url={`https://tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png?appid=${import.meta.env.VITE_APPID}`}
       />
       <TileLayer
-        url="https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=f6a863c3e80a20999b295bbd29db8da5"
+        url={`https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=${import.meta.env.VITE_APPID}`}
       />
       <Marker position={[lat, lon]}>
         <Popup>

@@ -9,7 +9,6 @@ import axios from 'axios'
 
 const apiUrl  = 'https://api.openweathermap.org/data/2.5/weather?q='
 const units = '&units=metric'
-const appid = `&appid=${import.meta.env.VITE_APPID}`
 const language = '&lang=es'
 
 function WeatherForm() {
@@ -29,7 +28,7 @@ function WeatherForm() {
             if (!citySearch.trim()) throw { message: "El campo Ciudad es obligatorio" }
         
             const response = await axios.get(
-                `${apiUrl}${citySearch}${units}${appid}${language}`
+                `${apiUrl}${citySearch}${units}&appid=${import.meta.env.VITE_APPID}${language}`
                 )
                  
             const data = await response.data
